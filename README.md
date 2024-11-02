@@ -6,7 +6,7 @@ A simple Flask application that allows you to create, store, and query tasks usi
 
 - [Features](#features)
 - [Endpoints](#endpoints)
-
+- [Testing the API](#testing-the-api)
 ## Features
 
 - Add new tasks with a description and status.
@@ -95,3 +95,33 @@ A simple Flask application that allows you to create, store, and query tasks usi
     "message": "Task deleted successfully"
   }
   ```
+
+## Testing the API
+
+### **1. Add a New Task**
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"task": "Finish report", "status": "In Progress"}' http://localhost:5000/tasks
+```
+
+### **2. Get All Tasks**
+
+```bash
+curl http://localhost:5000/tasks
+```
+
+### **3. Get a Task by ID**
+
+```bash
+curl http://localhost:5000/tasks/1
+```
+
+### **4. Update a Task**
+
+```bash
+curl -X PUT -H "Content-Type: application/json" -d '{"status": "Completed"}' http://localhost:5000/tasks/1
+```
+### **5. Delete a Task**
+```bash
+curl -X DELETE http://localhost:5000/tasks/1
+```
