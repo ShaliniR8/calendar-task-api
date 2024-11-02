@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from models import db, Task 
 
 app = Flask(__name__)
@@ -15,13 +15,14 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+    
 @app.route('/tasks', methods=['POST'])
 def add_task():
     data = request.get_json()
-    new_task = Task(
-        task=data['task'],
-        status=data['status']
-    )
+    new_task = Task(task=data['task'], status=data['status'])
     db.session.add(new_task)
     db.session.commit()
     return jsonify({'message': 'Task added successfully'}), 201
