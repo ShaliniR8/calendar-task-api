@@ -15,17 +15,16 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-    
-@app.route('/tasks', methods=['POST'])
+@app.route('/tasks', methods=['POST', 'GET'])
 def add_task():
-    data = request.get_json()
-    new_task = Task(task=data['task'], status=data['status'])
-    db.session.add(new_task)
-    db.session.commit()
-    return jsonify({'message': 'Task added successfully'}), 201
+    if request.method == 'POST':
+        data = request.get_json()
+        new_task = Task(task=data['task'], status=data['status'], priority=data.get('priority', 1))
+        db.session.add(new_task)
+        db.session.commit()
+        return jsonify({'message': 'Task added successfully'}), 201
+    else:
+        return render_template('form.html')
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
@@ -43,6 +42,7 @@ def update_task(id):
     task_item = Task.query.get_or_404(id)
     task_item.task = data.get('task', task_item.task)
     task_item.status = data.get('status', task_item.status)
+    task_item.priority = data.get('priority', task_item.priority)
     db.session.commit()
     return jsonify({'message': 'Task updated successfully'})
 

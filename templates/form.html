@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Add Task</title>
+    <style>
+        /* Basic styles for priority dropdown */
+        .priority-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .priority-display {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px;
+            border: 1px solid #ccc;
+            width: 100px;
+        }
+
+        .priority-circle {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .priority-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            z-index: 1;
+        }
+
+        .priority-options div {
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .priority-options div:hover {
+            background-color: #f0f0f0;
+        }
+
+        .priority-low { background-color: limegreen; }
+        .priority-default { background-color: gray; }
+        .priority-medium { background-color: orange; }
+        .priority-high { background-color: red; }
+    </style>
+</head>
+<body>
+    <h1>Task Manager - Add Task</h1>
+
+    <!-- Form to Add a New Task -->
+    <form id="addTaskForm">
+        <label for="task">Task:</label>
+        <input type="text" id="task" name="task" required>
+        
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required>
+        
+        <!-- Priority Dropdown -->
+        <label>Priority:</label>
+        <div class="priority-container">
+            <div class="priority-display" onclick="togglePriorityDropdown()">
+                <div id="selectedPriorityCircle" class="priority-circle priority-default"></div>
+                <span id="selectedPriorityLabel">Default</span>
+            </div>
+            <div class="priority-options" id="priorityOptions">
+                <div onclick="selectPriority(0, 'Low', 'priority-low')">
+                    <div class="priority-circle priority-low"></div> Low
+                </div>
+                <div onclick="selectPriority(1, 'Default', 'priority-default')">
+                    <div class="priority-circle priority-default"></div> Default
+                </div>
+                <div onclick="selectPriority(2, 'Medium', 'priority-medium')">
+                    <div class="priority-circle priority-medium"></div> Medium
+                </div>
+                <div onclick="selectPriority(3, 'High', 'priority-high')">
+                    <div class="priority-circle priority-high"></div> High
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" onclick="addTask()">Add Task</button>
+    </form>
+
+    <!-- JavaScript to Handle API Calls -->
+    <script>
+        let selectedPriority = 1;  // Default priority
+
+        function togglePriorityDropdown() {
+            const options = document.getElementById('priorityOptions');
+            options.style.display = options.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function selectPriority(value, label, cssClass) {
+            selectedPriority = value;
+            document.getElementById('selectedPriorityLabel').textContent = label;
+            const circle = document.getElementById('selectedPriorityCircle');
+            circle.className = 'priority-circle ' + cssClass;
+            togglePriorityDropdown();  // Close the dropdown
+        }
+
+        async function addTask() {
+            const task = document.getElementById('task').value;
+            const status = document.getElementById('status').value;
+
+            const response = await fetch('/tasks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ task, status, priority: selectedPriority })
+            });
+            const data = await response.json();
+            alert(data.message);
+            document.getElementById('addTaskForm').reset();
+            // Reset priority selection to default
+            selectPriority(1, 'Default', 'priority-default');
+        }
+    </script>
+</body>
+</html>
