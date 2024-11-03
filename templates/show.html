@@ -22,94 +22,25 @@
         </ul>
         
         <div class="tab-content mt-3">
-            <!-- Upcoming Tasks Tab -->
-            <div class="tab-pane fade show active" id="upcoming">
-                {% if upcoming_tasks %}
-                    {% for month, month_tasks in upcoming_tasks.items() %}
-                    <div class="month-section">
-                        <!-- Collapsible Month Header -->
-                        <div class="month-header d-flex justify-content-between align-items-center bg-secondary p-2">
-                            <h5 class="m-0">{{ month }}</h5>
-                            <button class="btn btn-link text-white" data-toggle="collapse" data-target="#upcoming-month-{{ loop.index }}" aria-expanded="true">
-                                <i class="fas fa-chevron-down"></i>
-                            </button>
-                        </div>
-                        
-                        <!-- Task List for the Month -->
-                        <div id="upcoming-month-{{ loop.index }}" class="collapse show">
-                            {% for task in month_tasks %}
-                            <div class="task-card d-flex align-items-center bg-dark p-2 mt-2">
-                                <!-- Priority Indicator -->
-                                <div class="priority-circle priority-{{ task.priority|lower }} mr-2"></div>
-                                
-                                <!-- Task Details -->
-                                <div class="task-details flex-grow-1">
-                                    <h6 class="m-0">{{ task.task }}</h6>
-                                    <small>{{ task.datetime.strftime("%I:%M %p") }}</small>
-                                </div>
-                                
-                                <!-- Date Box -->
-                                <div class="date-box text-center bg-secondary p-2">
-                                    <h3 class="m-0">{{ task.datetime.strftime("%d") }}</h3>
-                                    <small>{{ task.datetime.strftime("%A") }}</small>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    <p class="text-center text-muted">No upcoming tasks available.</p>
-                {% endif %}
-            </div>
-            
-            <!-- Overdue Tasks Tab -->
-            <div class="tab-pane fade" id="overdue">
-                {% if overdue_tasks %}
-                    {% for month, month_tasks in overdue_tasks.items() %}
-                    <div class="month-section">
-                        <!-- Collapsible Month Header -->
-                        <div class="month-header d-flex justify-content-between align-items-center bg-secondary p-2">
-                            <h5 class="m-0">{{ month }}</h5>
-                            <button class="btn btn-link text-white" data-toggle="collapse" data-target="#overdue-month-{{ loop.index }}" aria-expanded="true">
-                                <i class="fas fa-chevron-down"></i>
-                            </button>
-                        </div>
-                        
-                        <!-- Task List for the Month -->
-                        <div id="overdue-month-{{ loop.index }}" class="collapse show">
-                            {% for task in month_tasks %}
-                            <div class="task-card d-flex align-items-center bg-dark p-2 mt-2">
-                                <!-- Priority Indicator -->
-                                <div class="priority-circle priority-{{ task.priority|lower }} mr-2"></div>
-                                
-                                <!-- Task Details -->
-                                <div class="task-details flex-grow-1">
-                                    <h6 class="m-0">{{ task.task }}</h6>
-                                    <small>{{ task.datetime.strftime("%I:%M %p") }}</small>
-                                </div>
-                                
-                                <!-- Date Box -->
-                                <div class="date-box text-center bg-secondary p-2">
-                                    <h3 class="m-0">{{ task.datetime.strftime("%d") }}</h3>
-                                    <small>{{ task.datetime.strftime("%A") }}</small>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    <p class="text-center text-muted">No overdue tasks available.</p>
-                {% endif %}
-            </div>
+            <!-- Upcoming Task Section -->
+            {% include 'task_section.html' with context %}
+            {% set tab_id = 'upcoming' %}
+            {% set tasks = upcoming_tasks %}
+            {% set active_tab = True %}
+            {% include 'task_section.html' %}
+
+            <!-- Overdue Task Section -->
+            {% set tab_id = 'overdue' %}
+            {% set tasks = overdue_tasks %}
+            {% set active_tab = False %}
+            {% include 'task_section.html' %}
         </div>
     </div>
 
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <!-- Font Awesome for Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/show.js') }}"></script>
 </body>
 </html>

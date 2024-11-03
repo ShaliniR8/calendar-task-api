@@ -1,0 +1,9 @@
+<div class="priority-label d-flex align-items-center mr-3">
+    <div class="priority-circle 
+        {% if task.priority == 0 %} priority-low
+        {% elif task.priority == 1 %} priority-default
+        {% elif task.priority == 2 %} priority-medium
+        {% elif task.priority == 3 %} priority-high
+        {% else %} priority-unknown
+        {% endif %} mr-2"></div>
+</div>

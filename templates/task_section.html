@@ -1,0 +1,54 @@
+<div class="tab-pane fade {% if active_tab %}show active{% endif %}" id="{{ tab_id }}">
+    {% if tasks %}
+        {% for month, month_tasks in tasks.items() %}
+        <div class="month-section">
+            <!-- Collapsible Month Header -->
+            <div class="month-header d-flex justify-content-between align-items-center bg-secondary p-2">
+                <h5 class="m-0">{{ month }}</h5>
+                <button class="btn btn-link text-white" data-toggle="collapse" data-target="#{{ tab_id }}-month-{{ loop.index }}" aria-expanded="true">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+
+            <!-- Task List for the Month -->
+            <div id="{{ tab_id }}-month-{{ loop.index }}" class="collapse show">
+                {% for task in month_tasks %}
+                <div class="task-card d-flex align-items-center bg-dark p-2 mt-2 task-item" data-task-id="{{ task.id }}">
+                    <!-- Priority Partial -->
+                    {% 'priority.html' %}
+
+                    <!-- Task Details -->
+                    <div class="task-details flex-grow-1">
+                        <h6 class="m-0">{{ task.task }}</h6>
+                        <small>{{ task.datetime.strftime("%I:%M %p") }}</small>
+                    </div>
+
+                    <!-- Date Box -->
+                    <div class="date-box text-center bg-secondary p-2">
+                        <h3 class="m-0">{{ task.datetime.strftime("%d") }}</h3>
+                        <small>{{ task.datetime.strftime("%A") }}</small>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="task-actions ml-3 flex-column">
+                        <button class="btn btn-success btn-sm complete-task" title="Mark as Complete">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-4.02 5a.75.75 0 0 1-1.08 0l-2.01-2.5a.75.75 0 1 1 1.14-.97l1.47 1.82 3.47-4.32z"/>
+                            </svg>
+                        </button>
+                        
+                        <button class="btn btn-danger btn-sm delete-task" title="Delete Task">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center text-muted">No tasks available.</p>
+    {% endif %}
+</div>

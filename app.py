@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # --- sqlite configuration ---
 home_dir = os.path.expanduser("~") 
-db_path = os.path.join(home_dir, 'tasks', 'tasks.db') 
+db_path = os.path.join(home_dir, '.in-scape', 'tasks.db') 
 os.makedirs(os.path.dirname(db_path), exist_ok=True)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 db.init_app(app)

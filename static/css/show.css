@@ -1,35 +1,8 @@
-body {
-    background-color: #121212;
-}
-
-.nav-tabs .nav-link {
-    color: #fff;
-}
-
-.nav-tabs .nav-link.active {
-    background-color: #333;
-    color: #fff;
-}
-
-.month-section {
-    margin-top: 1rem;
-}
-
-.month-header {
-    background-color: #444;
-    cursor: pointer;
-}
-
-.task-card {
-    background-color: #2b2b2b;
-    border-radius: 5px;
-}
-
 .priority-circle {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    display: inline-block;
+    margin-right: 5px;
 }
 
 .priority-low { background-color: limegreen; }
@@ -37,17 +10,38 @@ body {
 .priority-medium { background-color: orange; }
 .priority-high { background-color: red; }
 
-.date-box {
-    width: 60px;
-    color: #fff;
-    border-radius: 4px;
+.priority-label {
+    display: flex;
+    align-items: center;
 }
 
-.date-box h3 {
-    font-size: 1.5rem;
-    margin: 0;
+.priority-text {
+    font-weight: bold;
+    color: white;
 }
 
-.date-box small {
-    font-size: 0.75rem;
+.task-item {
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.task-item:hover {
+    background-color: #2a2a2a;
+}
+
+.task-actions {
+    display: none;
+}
+
+.task-item:hover .task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.complete-task {
+    color: white;
+}
+
+.delete-task {
+    color: white;
 }
