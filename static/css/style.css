@@ -81,3 +81,15 @@ background-color: black;
     border-radius: 50%;
     margin-right: 5px;
 }
+
+/* Fade-in effect for showing the check mark */
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+/* Fade-out effect for hiding the check mark */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}

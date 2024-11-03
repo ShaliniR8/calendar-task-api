@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Form to Add a New Task -->
-    <form id="addTaskForm" class="border p-4 rounded" style="background-color: black;">
+    <form id="addTaskForm" class="border p-4 rounded" style="background-color: black;" onsubmit="addTask(event)">
         <div class="form-row justify-content-center align-items-center">
             <!-- Priority Dropdown -->
             <div class="col-auto">
@@ -44,7 +44,7 @@
             
             <!-- Add Task Button -->
             <div class="col-auto">
-                <button type="button" onclick="addTask()" class="btn btn-dark">Add Task</button>
+                <button type="button" id="addTaskButton" onclick="addTask(event)" class="btn btn-dark">Add Task</button>
             </div>
         </div>
     </form>
