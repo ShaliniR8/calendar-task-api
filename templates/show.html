@@ -11,7 +11,7 @@
 <body class="bg-dark text-white">
     <!-- Task List Display with Tabs -->
     <div class="container mt-5">
-        <!-- Tabs for Upcoming and Overdue -->
+        <!-- Tabs for Upcoming, Overdue, and Completed -->
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" href="#upcoming" data-toggle="tab">Upcoming</a>
@@ -19,11 +19,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="#overdue" data-toggle="tab">Overdue</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#completed" data-toggle="tab">Completed</a>
+            </li>
         </ul>
         
         <div class="tab-content mt-3">
             <!-- Upcoming Task Section -->
-            {% include 'task_section.html' with context %}
             {% set tab_id = 'upcoming' %}
             {% set tasks = upcoming_tasks %}
             {% set active_tab = True %}
@@ -32,6 +34,12 @@
             <!-- Overdue Task Section -->
             {% set tab_id = 'overdue' %}
             {% set tasks = overdue_tasks %}
+            {% set active_tab = False %}
+            {% include 'task_section.html' %}
+
+            <!-- Completed Task Section -->
+            {% set tab_id = 'completed' %}
+            {% set tasks = completed_tasks %}
             {% set active_tab = False %}
             {% include 'task_section.html' %}
         </div>

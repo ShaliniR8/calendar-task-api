@@ -53,10 +53,4 @@ async function addTask(event) {
     }, 1500); 
 
     document.getElementById('addTaskForm').reset();
-
-    // Reset priority selection to default
-    selectedPriority = 1;
-    document.getElementById('selectedPriorityLabel').textContent = label;
-    const circle = document.getElementById('selectedPriorityCircle');
-    circle.className = 'priority-circle ' + cssClass;
 }
