@@ -9,20 +9,29 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/show.css') }}">
 </head>
 <body class="bg-dark text-white">
+
     <!-- Task List Display with Tabs -->
     <div class="container mt-5">
-        <!-- Tabs for Upcoming, Overdue, and Completed -->
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" href="#upcoming" data-toggle="tab">Upcoming</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#overdue" data-toggle="tab">Overdue</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#completed" data-toggle="tab">Completed</a>
-            </li>
-        </ul>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <!-- Tabs for Upcoming, Overdue, and Completed -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#upcoming" data-toggle="tab">Upcoming</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#overdue" data-toggle="tab">Overdue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#completed" data-toggle="tab">Completed</a>
+                </li>
+            </ul>
+
+            <button id="refreshTasks" class="btn btn-link text-white" title="Refresh Tasks">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0,0,300,150">
+                    <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-2.9686,0 -5.69718,1.08344 -7.79297,2.875c-0.28605,0.22772 -0.42503,0.59339 -0.36245,0.95363c0.06258,0.36023 0.31676,0.6576 0.66286,0.77549c0.3461,0.1179 0.72895,0.03753 0.99842,-0.20959c1.74821,-1.49444 4.01074,-2.39453 6.49414,-2.39453c5.19656,0 9.45099,3.93793 9.95117,9h-2.95117l4,6l4,-6h-3.05078c-0.51129,-6.14834 -5.67138,-11 -11.94922,-11zM4,10l-4,6h3.05078c0.51129,6.14834 5.67138,11 11.94922,11c2.9686,0 5.69718,-1.08344 7.79297,-2.875c0.28605,-0.22772 0.42504,-0.59339 0.36245,-0.95363c-0.06258,-0.36023 -0.31676,-0.6576 -0.66286,-0.7755c-0.3461,-0.1179 -0.72895,-0.03753 -0.99842,0.20959c-1.74821,1.49444 -4.01074,2.39453 -6.49414,2.39453c-5.19656,0 -9.45099,-3.93793 -9.95117,-9h2.95117z"></path></g></g>
+                </svg>
+            </button>
+        </div>
         
         <div class="tab-content mt-3">
             <!-- Upcoming Task Section -->

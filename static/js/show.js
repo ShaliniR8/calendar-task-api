@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Handle deleting a task
+    document.querySelector('#refreshTasks').addEventListener('click', function(){
+        window.location.href = '/tasks'
+    })
+
     document.querySelectorAll('.delete-task').forEach(button => {
         button.addEventListener('click', async function (event) {
             const taskCard = event.target.closest('.task-item');
@@ -89,4 +92,5 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
 });
