@@ -1,6 +1,8 @@
 import os
 from flask import Flask, request, jsonify, render_template
 from models import db, Task 
+from collections import defaultdict
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -15,7 +17,27 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-@app.route('/tasks', methods=['POST', 'GET'])
+# Function to add ordinal suffix to a day
+def ordinal_suffix(day):
+    if 11 <= day <= 13:
+        return f"{day}th"
+    suffix = {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
+    return f"{day}{suffix}"
+
+# Register the custom filter with Jinja2
+app.jinja_env.filters['ordinal'] = ordinal_suffix
+
+# Helper function to group tasks by month
+def group_tasks_by_month(tasks):
+    grouped = {}
+    for task in tasks:
+        month = task.datetime.strftime('%B, %Y')
+        if month not in grouped:
+            grouped[month] = []
+        grouped[month].append(task)
+    return grouped
+
+@app.route('/new', methods=['POST', 'GET'])
 def add_task():
     if request.method == 'POST':
         data = request.get_json()
@@ -28,8 +50,24 @@ def add_task():
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
-    tasks = Task.query.all()
-    return jsonify([task.to_dict() for task in tasks])
+    # Retrieve all tasks and group by upcoming and overdue
+    current_date = datetime.now()
+    all_tasks = Task.query.all()
+    
+    # Separate tasks into upcoming and overdue based on the current date
+    upcoming_tasks = [task for task in all_tasks if task.datetime >= current_date]
+    overdue_tasks = [task for task in all_tasks if task.datetime < current_date]
+    
+    # Group tasks by month
+    upcoming_tasks_by_month = group_tasks_by_month(upcoming_tasks)
+    overdue_tasks_by_month = group_tasks_by_month(overdue_tasks)
+    
+    # Pass both upcoming and overdue grouped tasks to the template
+    return render_template(
+        'show.html', 
+        upcoming_tasks=upcoming_tasks_by_month, 
+        overdue_tasks=overdue_tasks_by_month
+    )
 
 @app.route('/tasks/<int:id>', methods=['GET'])
 def get_task(id):

@@ -23,7 +23,7 @@ async function addTask(event) {
     addButton.style.width = `${originalWidth}px`;
     addButton.disabled = true;
 
-    const response = await fetch('/tasks', {
+    const response = await fetch('/new', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ async function addTask(event) {
     }, 1500); 
 
     document.getElementById('addTaskForm').reset();
-    
+
     // Reset priority selection to default
     selectedPriority = 1;
     document.getElementById('selectedPriorityLabel').textContent = label;
