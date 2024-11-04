@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, jsonify, render_template
 from models import db, Task 
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timezone
 
 app = Flask(__name__)
 
@@ -16,6 +16,19 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+
+@app.route('/new', methods=['POST', 'GET'])
+def add_task():
+    if request.method == 'POST':
+        data = request.get_json()
+        datetime_str = data.get('datetime')
+        task_datetime = datetime.fromisoformat(datetime_str).astimezone(timezone.utc) if datetime_str else None
+        new_task = Task(task=data['task'], status='Upcoming', priority=data.get('priority', 1), datetime=task_datetime)
+        db.session.add(new_task)
+        db.session.commit()
+        return jsonify({'message': 'Task added successfully'}), 201
+    else:
+        return render_template('form.html', datetime = datetime)
 
 def ordinal_suffix(day):
     if 11 <= day <= 13:
@@ -33,17 +46,6 @@ def group_tasks_by_month(tasks):
             grouped[month] = []
         grouped[month].append(task)
     return grouped
-
-@app.route('/new', methods=['POST', 'GET'])
-def add_task():
-    if request.method == 'POST':
-        data = request.get_json()
-        new_task = Task(task=data['task'], status=data['status'], priority=data.get('priority', 1))
-        db.session.add(new_task)
-        db.session.commit()
-        return jsonify({'message': 'Task added successfully'}), 201
-    else:
-        return render_template('form.html')
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():

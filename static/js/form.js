@@ -23,12 +23,19 @@ async function addTask(event) {
     addButton.style.width = `${originalWidth}px`;
     addButton.disabled = true;
 
+    let datetimeLocal = document.getElementById('datetime').value;
+    
+    if (datetimeLocal) {
+        const localDate = new Date(datetimeLocal);
+        datetimeLocal = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000).toISOString();
+    }
+
     const response = await fetch('/new', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ task, status: "Upcoming", priority: selectedPriority })
+        body: JSON.stringify({ task, priority: selectedPriority, datetime: datetimeLocal })
     });
     
     const data = await response.json();
