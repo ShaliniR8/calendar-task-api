@@ -1,0 +1,47 @@
+/* Container Styling */
+.container {
+    max-width: 800px;
+  }
+  
+  /* Form Styling */
+  form {
+    background-color: #000;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  /* Priority Dropdown */
+  select.form-control {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  /* Task Input */
+  input.form-control {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  /* Add Task Button */
+  button.btn-dark {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  button.btn-dark:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Date-Time Picker */
+  input[type="datetime-local"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+  
