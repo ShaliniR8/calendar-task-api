@@ -1,0 +1,56 @@
+
+.priority-dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  
+  .selected-priority {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    border: 0px;
+    width: 100px;
+  }
+  
+
+.priority-options {
+  position: absolute;
+  margin-top: 5px;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  display: flex; 
+  gap: 5px; 
+  padding: 5px; 
+}
+
+
+.priority-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px; 
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px; 
+}
+  
+  .priority-option:hover {
+    background-color: #444;
+  }
+  
+  
+  .priority-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+  
