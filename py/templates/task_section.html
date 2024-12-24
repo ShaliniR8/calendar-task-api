@@ -13,7 +13,7 @@
             <!-- Task List for the Month -->
             <div id="{{ tab_id }}-month-{{ month }}" class="collapse show">
                 {% for task in month_tasks %}
-                <div class="task-card d-flex align-items-center bg-dark p-2 mt-2 task-item" data-task-id="{{ task.id }}">
+                <div class="task-card d-flex align-items-center bg-dark p-2 mt-2 task-item" data-task-id="{{ task._id }}">
                     <!-- Priority Partial -->
                     {% if task.status != 'Completed' %}
                         {% include 'priority.html' %}
@@ -22,13 +22,13 @@
                     <!-- Task Details -->
                     <div class="task-details flex-grow-1">
                         <h6 class="m-0">{{ task.task }}</h6>
-                        <small>{{ task.datetime.strftime("%I:%M %p") }}</small>
+                        <small>{{ task.time }}</small>
                     </div>
 
                     <!-- Date Box -->
                     <div class="date-box text-center bg-secondary p-2">
-                        <h3 class="m-0">{{ task.datetime.strftime("%d") }}</h3>
-                        <small>{{ task.datetime.strftime("%A") }}</small>
+                        <h3 class="m-0">{{ task.date }}</h3>
+                        <small>{{ task.day }}</small>
                     </div>
 
                     <!-- Action Buttons -->

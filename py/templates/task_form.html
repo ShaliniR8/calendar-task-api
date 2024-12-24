@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="container mt-5">
+        {% if form_type == 'login' %}
+            {% include 'login.html' %}
+        {% elif form_type == 'task_form' %}
+            {% include 'task_form.html' %}
+        {% endif %}
+    </div>
+</body>
+</html>
