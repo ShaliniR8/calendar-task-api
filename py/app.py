@@ -20,6 +20,7 @@ client = MongoClient(MONGO_URI)
 db = client["atm0sCal"]
 tasks_collection = db["tasks"]
 users_collection = db["users"]
+is_authenticated = False
 
 # -------------------------------
 app.secret_key = os.urandom(24)
@@ -57,7 +58,8 @@ def auth():
 
     user_obj = User(user["_id"])  # Assuming User class is already defined
     login_user(user_obj)
-    return redirect(url_for('add_task'))
+    is_authenticated = True
+    return redirect(url_for('get_tasks'))
 
 @app.route('/login', methods=['GET'])
 def login():
@@ -69,20 +71,16 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-@app.route('/new', methods=['POST', 'GET'])
+@app.route('/new', methods=['POST'])
 def add_task():
-    if not current_user.is_authenticated:
-        return redirect(url_for('login'))
-    if request.method == 'POST':
-        data = request.get_json()
-        datetime_str = data.get('datetime')
-        task_datetime = datetime.fromisoformat(datetime_str).astimezone(timezone.utc) if datetime_str else None
-        new_task = {"task": data['task'], "status": "Upcoming", "priority": data.get("priority", 1), "datetime": task_datetime, "user_id": str(current_user.id)}
-        tasks_collection.insert_one(new_task)
+    data = request.get_json()
+    datetime_str = data.get('datetime')
+    task_datetime = datetime.fromisoformat(datetime_str).astimezone(timezone.utc) if datetime_str else None
+    new_task = {"task": data['task'], "status": "Upcoming", "priority": data.get("priority", 1), "datetime": task_datetime, "user_id": str(current_user.id)}
+    tasks_collection.insert_one(new_task)
 
-        return jsonify({'message': 'Task added successfully'}), 201
-    else:
-        return render_template('form.html', datetime = datetime)
+    return jsonify({'message': 'Task added successfully'}), 201
+  
 
 def ordinal_suffix(day):
     if 11 <= day <= 13:
@@ -139,7 +137,8 @@ def get_tasks():
         'show.html',
         upcoming_tasks=upcoming_tasks_by_month,
         overdue_tasks=overdue_tasks_by_month,
-        completed_tasks=completed_tasks_by_month
+        completed_tasks=completed_tasks_by_month,
+        datetime = datetime
     )
 
 @app.route('/tasks/<string:id>', methods=['GET'])

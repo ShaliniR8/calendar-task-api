@@ -1,75 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
-    <style>
-        /* Ensure the datetime picker matches the width of the task input field */
-        #datetime {
-            max-width: 100%;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <!-- Form to Add a New Task -->
-    <form id="addTaskForm" class="border p-4 rounded" style="background-color: black;" onsubmit="addTask(event)">
-        <!-- First Row: Priority, Task Input, and Add Task Button -->
-        <div class="form-row justify-content-center align-items-center">
-            <!-- Priority Dropdown -->
-            <div class="col-auto">
-                <div class="priority-container">
-                    <div class="priority-display" onclick="togglePriorityDropdown()">
-                        <div id="selectedPriorityCircle" class="priority-circle priority-default"></div>
-                        <span id="selectedPriorityLabel" class="text-white">Default</span>
+<form id="addTaskForm" class="p-4 rounded" style="background-color: black;" onsubmit="addTask(event)">
+    <!-- First Row: Priority, Task Input, and Add Task Button -->
+    <div class="form-row justify-content-center align-items-center">
+        <!-- Priority Dropdown -->
+        <div class="col-auto">
+            <div class="priority-container">
+                <div class="priority-display" onclick="togglePriorityDropdown()">
+                    <div id="selectedPriorityCircle" class="priority-circle priority-default"></div>
+                    <span id="selectedPriorityLabel" class="text-white">Default</span>
+                </div>
+                <div class="priority-options" id="priorityOptions" style="display: none">
+                    <div onclick="selectPriority(0, 'Low', 'priority-low')">
+                        <div class="priority-circle priority-low"></div> <span class="text-white">Low</span>
                     </div>
-                    <div class="priority-options" id="priorityOptions" style="display: none">
-                        <div onclick="selectPriority(0, 'Low', 'priority-low')">
-                            <div class="priority-circle priority-low"></div> <span class="text-white">Low</span>
-                        </div>
-                        <div onclick="selectPriority(1, 'Default', 'priority-default')">
-                            <div class="priority-circle priority-default"></div> <span class="text-white">Default</span>
-                        </div>
-                        <div onclick="selectPriority(2, 'Medium', 'priority-medium')">
-                            <div class="priority-circle priority-medium"></div> <span class="text-white">Medium</span>
-                        </div>
-                        <div onclick="selectPriority(3, 'High', 'priority-high')">
-                            <div class="priority-circle priority-high"></div> <span class="text-white">High</span>
-                        </div>
+                    <div onclick="selectPriority(1, 'Default', 'priority-default')">
+                        <div class="priority-circle priority-default"></div> <span class="text-white">Default</span>
+                    </div>
+                    <div onclick="selectPriority(2, 'Medium', 'priority-medium')">
+                        <div class="priority-circle priority-medium"></div> <span class="text-white">Medium</span>
+                    </div>
+                    <div onclick="selectPriority(3, 'High', 'priority-high')">
+                        <div class="priority-circle priority-high"></div> <span class="text-white">High</span>
                     </div>
                 </div>
             </div>
-                        
-            <!-- Task Input -->
-            <div class="col-6">
-                <input type="text" id="task" name="task" class="form-control text-white bg-dark" placeholder="Enter task" required>
-            </div>
-
-            <!-- Add Task Button -->
-            <div class="col-auto">
-                <button type="button" id="addTaskButton" onclick="addTask(event)" class="btn btn-dark">Add Task</button>
-            </div>
+        </div>
+                    
+        <!-- Task Input -->
+        <div class="col-6">
+            <input type="text" id="task" name="task" class="form-control text-white bg-dark" placeholder="Enter task" required>
         </div>
 
-        <!-- Second Row: Date and Time Picker Aligned to the Right -->
-        <div class="form-row mt-2">
-            <div class="col-3 offset-6">
-                <input type="datetime-local" id="datetime" name="datetime" class="form-control text-white bg-dark" required
-                value="{{ datetime.now().strftime('%Y-%m-%dT%H:%M') }}">
-            </div>
+        <!-- Add Task Button -->
+        <div class="col-auto">
+            <button type="button" id="addTaskButton" onclick="addTask(event)" class="btn btn-dark">Add Task</button>
         </div>
-    </form>
-  
-    <!-- jQuery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Custom JavaScript -->
-    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
-</body>
-</html>
+    </div>
+
+    <!-- Second Row: Date and Time Picker Aligned to the Right -->
+    <div class="form-row mt-2">
+        <div class="col-3 offset-6">
+            <input type="datetime-local" id="datetime" name="datetime" class="form-control text-white bg-dark" required
+            value="{{ datetime.now().strftime('%Y-%m-%dT%H:%M') }}">
+        </div>
+    </div>
+</form>

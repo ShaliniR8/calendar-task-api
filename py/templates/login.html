@@ -1,23 +1,48 @@
-<div class="card bg-secondary text-white">
-    <div class="card-body">
-        <h5 class="card-title">Login or Register</h5>
-        <form method="POST" action="/auth">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+    <style>
+        .form-container {
+            height: 70vh;
+            display: flex;
+            justify-content: center; 
+        }
+        .btn-group-toggle .btn-success {
+            color: #fff;
+        }
+        .btn-group-toggle .btn-light {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="card bg-dark text-white" style="width: 100%; max-width: 400px;">
+            <div class="card-body">
+                <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+                    <button id="loginButton" class="btn btn-success flex-fill" onclick="setAction('login')">Login</button>
+                    <button id="registerButton" class="btn btn-light flex-fill" onclick="setAction('register')">Register</button>
+                </div>
+                <!-- Form -->
+                <form method="POST" action="/auth" class="mt-4">
+                    <input type="hidden" id="action" name="action" value="login">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-            </div>
-            <div class="form-group">
-                <label for="action">Action</label>
-                <select class="form-control" id="action" name="action">
-                    <option value="login">Login</option>
-                    <option value="register">Register</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </div>
     </div>
-</div>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

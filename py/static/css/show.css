@@ -1,3 +1,10 @@
+body {
+    height: 100vh;
+    display:flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+}
+
 .priority-circle {
     width: 15px;
     height: 15px;

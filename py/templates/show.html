@@ -7,6 +7,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/show.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+    <style>
+        /* Ensure the datetime picker matches the width of the task input field */
+        #datetime {
+            max-width: 100%;
+            width: 100%;
+        }
+    </style>
 </head>
 <body class="bg-dark text-white">
 
@@ -33,7 +41,7 @@
             </button>
         </div>
         
-        <div class="tab-content mt-3">
+        <div class="tab-content mt-3" style="height:50vh;overflow-y:scroll">
             <!-- Upcoming Task Section -->
             {% set tab_id = 'upcoming' %}
             {% set tasks = upcoming_tasks %}
@@ -54,10 +62,14 @@
         </div>
     </div>
 
+    {% include 'form.html' %}
+
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="{{ url_for('static', filename='js/show.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+
 </body>
 </html>
