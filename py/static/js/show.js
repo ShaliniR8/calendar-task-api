@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const formattedTime = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
                 let completedTab = document.getElementById('completed');
-                debugger
+                
                 let monthSection = completedTab.querySelector(`[data-target='#completed-month-${completedMonth}']`).closest('.month-section');
                 if (!monthSection) {
                     monthSection = document.createElement('div');

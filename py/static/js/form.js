@@ -29,7 +29,7 @@ async function addTask(event) {
         const localDate = new Date(datetimeLocal);
         datetimeLocal = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000).toISOString();
     }
-
+    
     const response = await fetch('/new', {
         method: 'POST',
         headers: {
