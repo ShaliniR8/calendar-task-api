@@ -1,7 +1,7 @@
 <div class="card bg-secondary text-white">
     <div class="card-body">
-        <h5 class="card-title">Login</h5>
-        <form method="POST" action="/login">
+        <h5 class="card-title">Login or Register</h5>
+        <form method="POST" action="/auth">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
@@ -10,7 +10,14 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="form-group">
+                <label for="action">Action</label>
+                <select class="form-control" id="action" name="action">
+                    <option value="login">Login</option>
+                    <option value="register">Register</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>

@@ -1,29 +1,17 @@
 import os
+import bcrypt
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from models import db, Task 
 from collections import defaultdict
 from bson.objectid import ObjectId
 from datetime import datetime, timezone
+from pymongo import MongoClient
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-# # --- sqlite configuration ---
-# home_dir = os.path.expanduser("~") 
-# db_path = os.path.join(home_dir, '.in-scape', 'tasks.db') 
-# os.makedirs(os.path.dirname(db_path), exist_ok=True)
-# app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
-# db.init_app(app)
-
-
-# with app.app_context():
-#     db.create_all()
-
-# # -----------------------------
-
 # ---- MONGODB ------------------
-from pymongo import MongoClient
-from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -31,6 +19,7 @@ MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)
 db = client["atm0sCal"]
 tasks_collection = db["tasks"]
+users_collection = db["users"]
 
 # -------------------------------
 app.secret_key = os.urandom(24)
@@ -45,12 +34,33 @@ class User(UserMixin):
 def load_user(user_id):
     return User(user_id)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/auth', methods=['POST'])
+def auth():
+    username = request.form['username']
+    password = request.form['password']
+    action = request.form['action']
+
+    if action == "register":
+        if users_collection.find_one({"username": username}):
+            return "User already exists!", 400
+
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        users_collection.insert_one({
+            "username": username,
+            "password": hashed_password.decode('utf-8')
+        })
+
+    # login
+    user = users_collection.find_one({"username": username})
+    if not user or not bcrypt.checkpw(password.encode('utf-8'), user["password"].encode('utf-8')):
+        return "Invalid username or password!", 401
+
+    user_obj = User(user["_id"])  # Assuming User class is already defined
+    login_user(user_obj)
+    return redirect(url_for('add_task'))
+
+@app.route('/login', methods=['GET'])
 def login():
-    if request.method == 'POST':
-        user = User(request.form['username'])
-        login_user(user)
-        return redirect(url_for('add_task'))
     return render_template('login.html')
 
 @app.route('/logout')
@@ -67,7 +77,7 @@ def add_task():
         data = request.get_json()
         datetime_str = data.get('datetime')
         task_datetime = datetime.fromisoformat(datetime_str).astimezone(timezone.utc) if datetime_str else None
-        new_task = {"task": data['task'], "status": "Upcoming", "priority": data.get("priority", 1), "datetime": task_datetime}
+        new_task = {"task": data['task'], "status": "Upcoming", "priority": data.get("priority", 1), "datetime": task_datetime, "user_id": str(current_user.id)}
         tasks_collection.insert_one(new_task)
 
         return jsonify({'message': 'Task added successfully'}), 201
@@ -100,19 +110,24 @@ def group_tasks_by_month(tasks):
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
     current_date = datetime.now()
 
     upcoming_tasks = list(tasks_collection.find({
+        "user_id": str(current_user.id),
         "datetime": {"$gte": current_date},
         "status": {"$ne": "Completed"}
     }))
 
     overdue_tasks = list(tasks_collection.find({
+        "user_id": str(current_user.id),
         "datetime": {"$lt": current_date},
         "status": {"$ne": "Completed"}
     }))
 
     completed_tasks = list(tasks_collection.find({
+        "user_id": str(current_user.id),
         "status": "Completed"
     }))
 
@@ -129,7 +144,9 @@ def get_tasks():
 
 @app.route('/tasks/<string:id>', methods=['GET'])
 def get_task(id):
-    task = tasks_collection.find_one({"_id": ObjectId(id)})
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    task = tasks_collection.find_one({"_id": ObjectId(id), "user_id": str(current_user.id)})
     if not task:
         return jsonify({"error": "Task not found"}), 404
     task["_id"] = str(task["_id"]) 
