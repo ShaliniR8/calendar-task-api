@@ -43,7 +43,7 @@ def auth():
 
     if action == "register":
         if users_collection.find_one({"username": username}):
-            return "User already exists!", 400
+            return render_template("login.html", error="Username already exists!", action="register")
 
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         users_collection.insert_one({
@@ -54,7 +54,7 @@ def auth():
     # login
     user = users_collection.find_one({"username": username})
     if not user or not bcrypt.checkpw(password.encode('utf-8'), user["password"].encode('utf-8')):
-        return "Invalid username or password!", 401
+        return render_template("login.html", error="Invalid username or password!")
 
     user_obj = User(user["_id"])  # Assuming User class is already defined
     login_user(user_obj)

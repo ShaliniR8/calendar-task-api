@@ -27,19 +27,19 @@
                     
         <!-- Task Input -->
         <div class="col-6">
-            <input type="text" id="task" name="task" class="form-control text-white bg-dark" placeholder="Enter task" required>
+            <input type="text" id="task" name="task" class="form-control-sm text-white bg-dark" placeholder="Enter task" required>
         </div>
 
         <!-- Add Task Button -->
         <div class="col-auto">
-            <button type="button" id="addTaskButton" onclick="addTask(event)" class="btn btn-dark">Add Task</button>
+            <button type="button" id="addTaskButton" onclick="addTask(event)" class="btn btn-sm btn-dark">Add Task</button>
         </div>
     </div>
 
     <!-- Second Row: Date and Time Picker Aligned to the Right -->
     <div class="form-row mt-2">
         <div class="col-3 offset-6">
-            <input type="datetime-local" id="datetime" name="datetime" class="form-control text-white bg-dark" required
+            <input type="datetime-local" id="datetime" name="datetime" class="form-control-sm text-white bg-dark" required
             value="{{ datetime.now().strftime('%Y-%m-%dT%H:%M') }}">
         </div>
     </div>
