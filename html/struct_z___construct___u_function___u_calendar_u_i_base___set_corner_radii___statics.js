@@ -1,0 +1,4 @@
+var struct_z___construct___u_function___u_calendar_u_i_base___set_corner_radii___statics =
+[
+    [ "CalendarUIBase_eventSetCornerRadii_Parms", "struct_z___construct___u_function___u_calendar_u_i_base___set_corner_radii___statics_1_1_calenda4ac6e54514f53dfa87ab07cc7ff136a4.html", null ]
+];

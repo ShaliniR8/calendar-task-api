@@ -1,0 +1,4 @@
+var struct_z___construct___u_function___u_calendar_u_i_base___handle_on_minute_changed___statics =
+[
+    [ "CalendarUIBase_eventHandleOnMinuteChanged_Parms", "struct_z___construct___u_function___u_calendar_u_i_base___handle_on_minute_changed___statics_1_11f8f0590ecbd77ea08e6d3fec1c3fc0a.html", null ]
+];

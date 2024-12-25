@@ -1,0 +1,4 @@
+var struct_z___construct___u_function___u_calendar_u_i_base___handle_on_year_changed___statics =
+[
+    [ "CalendarUIBase_eventHandleOnYearChanged_Parms", "struct_z___construct___u_function___u_calendar_u_i_base___handle_on_year_changed___statics_1_1_c76be8ac4c44aa748afd5c84399dbe43c.html", null ]
+];

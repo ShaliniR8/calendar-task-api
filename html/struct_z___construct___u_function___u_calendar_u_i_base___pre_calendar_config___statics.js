@@ -1,0 +1,4 @@
+var struct_z___construct___u_function___u_calendar_u_i_base___pre_calendar_config___statics =
+[
+    [ "CalendarUIBase_eventPreCalendarConfig_Parms", "struct_z___construct___u_function___u_calendar_u_i_base___pre_calendar_config___statics_1_1_cale5333a1bdfeb6a841d7abcfc51e201311.html", null ]
+];
