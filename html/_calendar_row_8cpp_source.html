@@ -102,26 +102,36 @@ $(function(){initNavTree('_calendar_row_8cpp_source.html',''); initResizable(tru
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Fill out your copyright notice in the Description page of Project Settings.</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;CalendarRow.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keywordtype">void</span> UCalendarRow::Init(</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>                        int32 RowValue, </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>                        int32 year, int32 month, </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>                        FLinearColor color1,</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>                        FLinearColor color2,</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>                        FLinearColor color3,</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                        <a class="code hl_class" href="class_u_calendar_u_i_base.html">UCalendarUIBase</a>* InOwner)</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    structure.Row = RowValue;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    structure.Year = year;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    structure.Month = month;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    structure.SelectedGridColor = color1;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    structure.EmptyGridColor = color2;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    structure.GridColor = color3;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    Owner = InOwner;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;CalendarRow.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_u_calendar_row.html#a120b529bd6e963cde26937a84fc8ebbe">   16</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="class_u_calendar_row.html#a120b529bd6e963cde26937a84fc8ebbe">UCalendarRow::Init</a>(</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    int32 RowValue,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    int32 year, int32 month,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    FLinearColor color1,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    FLinearColor color2,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    FLinearColor color3,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="class_u_calendar_u_i_base.html">UCalendarUIBase</a>* InOwner)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_variable" href="class_u_calendar_row.html#ac877eba41da23e2c3009e1836256f6d7">structure</a>.<a class="code hl_variable" href="struct_f_my_base_sructure.html#a21e70b15f24048512c40cad89f49f513">Row</a> = RowValue;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_variable" href="class_u_calendar_row.html#ac877eba41da23e2c3009e1836256f6d7">structure</a>.<a class="code hl_variable" href="struct_f_my_base_sructure.html#a88cf99ae5dba836107a35b871e753435">Year</a> = year;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_variable" href="class_u_calendar_row.html#ac877eba41da23e2c3009e1836256f6d7">structure</a>.<a class="code hl_variable" href="struct_f_my_base_sructure.html#af878ef2fb9f635bcd61d1b30c130558f">Month</a> = month;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_variable" href="class_u_calendar_row.html#ac877eba41da23e2c3009e1836256f6d7">structure</a>.<a class="code hl_variable" href="struct_f_my_base_sructure.html#a72efcefac992cb40bcf703e50a3dc753">SelectedGridColor</a> = color1;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_variable" href="class_u_calendar_row.html#ac877eba41da23e2c3009e1836256f6d7">structure</a>.<a class="code hl_variable" href="struct_f_my_base_sructure.html#ab78f5c8f80b82c9ab5c28573c7581175">EmptyGridColor</a> = color2;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_variable" href="class_u_calendar_row.html#ac877eba41da23e2c3009e1836256f6d7">structure</a>.<a class="code hl_variable" href="struct_f_my_base_sructure.html#a7513c53fd1fcf0f4f89a79331d54098a">GridColor</a> = color3;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_variable" href="class_u_calendar_row.html#a0c389bb5ebb05235a1566990b49d0e8b">Owner</a> = InOwner;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+</div>
+<div class="ttc" id="aclass_u_calendar_row_html_a0c389bb5ebb05235a1566990b49d0e8b"><div class="ttname"><a href="class_u_calendar_row.html#a0c389bb5ebb05235a1566990b49d0e8b">UCalendarRow::Owner</a></div><div class="ttdeci">UCalendarUIBase * Owner</div><div class="ttdef"><b>Definition</b> CalendarRow.h:87</div></div>
+<div class="ttc" id="aclass_u_calendar_row_html_a120b529bd6e963cde26937a84fc8ebbe"><div class="ttname"><a href="class_u_calendar_row.html#a120b529bd6e963cde26937a84fc8ebbe">UCalendarRow::Init</a></div><div class="ttdeci">void Init(int32 RowValue, int32 year, int32 month, FLinearColor color1, FLinearColor color2, FLinearColor color3, UCalendarUIBase *InOwner)</div><div class="ttdoc">Initializes a calendar row with the specified parameters.</div><div class="ttdef"><b>Definition</b> CalendarRow.cpp:16</div></div>
+<div class="ttc" id="aclass_u_calendar_row_html_ac877eba41da23e2c3009e1836256f6d7"><div class="ttname"><a href="class_u_calendar_row.html#ac877eba41da23e2c3009e1836256f6d7">UCalendarRow::structure</a></div><div class="ttdeci">FMyBaseSructure structure</div><div class="ttdef"><b>Definition</b> CalendarRow.h:83</div></div>
 <div class="ttc" id="aclass_u_calendar_u_i_base_html"><div class="ttname"><a href="class_u_calendar_u_i_base.html">UCalendarUIBase</a></div><div class="ttdoc">A user interface class for managing calendar functionality.</div><div class="ttdef"><b>Definition</b> CalendarUIBase.h:19</div></div>
+<div class="ttc" id="astruct_f_my_base_sructure_html_a21e70b15f24048512c40cad89f49f513"><div class="ttname"><a href="struct_f_my_base_sructure.html#a21e70b15f24048512c40cad89f49f513">FMyBaseSructure::Row</a></div><div class="ttdeci">int32 Row</div><div class="ttdef"><b>Definition</b> CalendarRow.h:24</div></div>
+<div class="ttc" id="astruct_f_my_base_sructure_html_a72efcefac992cb40bcf703e50a3dc753"><div class="ttname"><a href="struct_f_my_base_sructure.html#a72efcefac992cb40bcf703e50a3dc753">FMyBaseSructure::SelectedGridColor</a></div><div class="ttdeci">FLinearColor SelectedGridColor</div><div class="ttdef"><b>Definition</b> CalendarRow.h:36</div></div>
+<div class="ttc" id="astruct_f_my_base_sructure_html_a7513c53fd1fcf0f4f89a79331d54098a"><div class="ttname"><a href="struct_f_my_base_sructure.html#a7513c53fd1fcf0f4f89a79331d54098a">FMyBaseSructure::GridColor</a></div><div class="ttdeci">FLinearColor GridColor</div><div class="ttdef"><b>Definition</b> CalendarRow.h:44</div></div>
+<div class="ttc" id="astruct_f_my_base_sructure_html_a88cf99ae5dba836107a35b871e753435"><div class="ttname"><a href="struct_f_my_base_sructure.html#a88cf99ae5dba836107a35b871e753435">FMyBaseSructure::Year</a></div><div class="ttdeci">int32 Year</div><div class="ttdef"><b>Definition</b> CalendarRow.h:28</div></div>
+<div class="ttc" id="astruct_f_my_base_sructure_html_ab78f5c8f80b82c9ab5c28573c7581175"><div class="ttname"><a href="struct_f_my_base_sructure.html#ab78f5c8f80b82c9ab5c28573c7581175">FMyBaseSructure::EmptyGridColor</a></div><div class="ttdeci">FLinearColor EmptyGridColor</div><div class="ttdef"><b>Definition</b> CalendarRow.h:40</div></div>
+<div class="ttc" id="astruct_f_my_base_sructure_html_af878ef2fb9f635bcd61d1b30c130558f"><div class="ttname"><a href="struct_f_my_base_sructure.html#af878ef2fb9f635bcd61d1b30c130558f">FMyBaseSructure::Month</a></div><div class="ttdeci">int32 Month</div><div class="ttdef"><b>Definition</b> CalendarRow.h:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

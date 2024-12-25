@@ -13,5 +13,6 @@ var searchData=
   ['calendaruibase_5feventsetcornerradii_5fparms_10',['CalendarUIBase_eventSetCornerRadii_Parms',['../struct_z___construct___u_function___u_calendar_u_i_base___set_corner_radii___statics_1_1_calenda4ac6e54514f53dfa87ab07cc7ff136a4.html',1,'Z_Construct_UFunction_UCalendarUIBase_SetCornerRadii_Statics']]],
   ['calendaruibase_5feventsetmonth_5fparms_11',['CalendarUIBase_eventSetMonth_Parms',['../struct_z___construct___u_function___u_calendar_u_i_base___set_month___statics_1_1_calendar_u_i_base__event_set_month___parms.html',1,'Z_Construct_UFunction_UCalendarUIBase_SetMonth_Statics']]],
   ['calendaruibase_5feventsetyear_5fparms_12',['CalendarUIBase_eventSetYear_Parms',['../struct_z___construct___u_function___u_calendar_u_i_base___set_year___statics_1_1_calendar_u_i_base__event_set_year___parms.html',1,'Z_Construct_UFunction_UCalendarUIBase_SetYear_Statics']]],
-  ['createcalendar_13',['CreateCalendar',['../class_u_calendar_u_i_base.html#a11312e51d4b570c9594b442ec9566a1a',1,'UCalendarUIBase']]]
+  ['createcalendar_13',['CreateCalendar',['../class_u_calendar_u_i_base.html#a11312e51d4b570c9594b442ec9566a1a',1,'UCalendarUIBase']]],
+  ['currentdatetime_14',['CurrentDateTime',['../class_u_calendar_item_base.html#add4bbf263d92569a5c2cba4ba7aa3e96',1,'UCalendarItemBase']]]
 ];

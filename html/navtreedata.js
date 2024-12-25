@@ -43,7 +43,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_calendar_item_base_8cpp_source.html"
+"_calendar_item_base_8cpp_source.html",
+"struct_z___construct___u_function___u_calendar_u_i_base___handle_on_minute_changed___statics.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fmybasesructure_0',['FMyBaseSructure',['../struct_f_my_base_sructure.html',1,'']]],
-  ['fsimplecalendarpluginmodule_1',['FSimpleCalendarPluginModule',['../class_f_simple_calendar_plugin_module.html',1,'']]]
+  ['emptygridcolor_0',['EmptyGridColor',['../struct_f_my_base_sructure.html#ab78f5c8f80b82c9ab5c28573c7581175',1,'FMyBaseSructure']]]
 ];
