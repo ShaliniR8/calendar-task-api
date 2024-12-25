@@ -56,7 +56,7 @@ def auth():
     if not user or not bcrypt.checkpw(password.encode('utf-8'), user["password"].encode('utf-8')):
         return render_template("login.html", error="Invalid username or password!")
 
-    user_obj = User(user["_id"])  # Assuming User class is already defined
+    user_obj = User(user["_id"])
     login_user(user_obj)
     is_authenticated = True
     return redirect(url_for('get_tasks'))
@@ -94,7 +94,7 @@ def group_tasks_by_month(tasks):
     grouped = {}
     for task in tasks:
         task_date = task["datetime"]
-        if isinstance(task_date, str):  # If datetime is stored as string
+        if isinstance(task_date, str):
             task_date = datetime.fromisoformat(task_date)
         task['time'] = task_date.strftime("%I:%M %p")
         task['date'] = task_date.strftime("%d")
